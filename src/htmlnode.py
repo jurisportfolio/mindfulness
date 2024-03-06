@@ -31,3 +31,16 @@ class HTMLNode:
                 node_repr += f"\n {index}: {tag_to_print if child.tag else 'has no tag'}"
         return node_repr
 
+
+class LeafNode(HTMLNode):
+    def __init__(self, tag, value, props=None):
+        super().__init__(tag, value, props)
+
+    def to_html(self):
+        tag_str = f"<{self.tag}>"
+        tag_with_props_str = f"<{self.tag}{super().props_to_html()}>"
+        closing_tag_str = f"</{self.tag}>"
+        if self.props:
+            return f"{tag_with_props_str}{self.value}{closing_tag_str}"
+        else:
+            return f"{tag_str}{self.value}{closing_tag_str}"
