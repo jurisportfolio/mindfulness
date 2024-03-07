@@ -23,7 +23,7 @@ class HTMLNode:
         if self.value:
             node_repr += f"\n   Value: \"{self.value}\""
         if self.props:
-            node_repr += f"\n   Props: {self.props_to_html()}"
+            node_repr += f"\n   Props: {self.props}"
         if self.children:
             node_repr += f"\nChildren:"
             for index, child in enumerate(self.children):

@@ -18,16 +18,16 @@ class TestHTMLNode(unittest.TestCase):
     def test_repr(self):
         child_node1 = HTMLNode("span")
         child_node2 = HTMLNode()
-        node = HTMLNode("p",
-                        "This is HTMLNode",
-                        {"class": "some-class", "other_prop": "some-prop"},
-                        [child_node1, child_node2]
+        node = HTMLNode(tag="p",
+                        value="This is HTMLNode",
+                        props={"class": "some-class", "other_prop": "some-prop"},
+                        children=[child_node1, child_node2]
                         )
         self.assertEqual((f"HTMLNode: {id(node)}\n" +
-                          f"     Tag: <p>\n" +
-                          f"   Value: \"This is HTMLNode\"\n" +
-                          f"   Props: class=\"some-class\" other_prop=\"some-prop\"\n" +
-                          f"Children:\n 0: tag <span>\n 1: has no tag"),
+                          "     Tag: <p>\n" +
+                          "   Value: \"This is HTMLNode\"\n" +
+                          "   Props: {'class': 'some-class', 'other_prop': 'some-prop'}\n" +
+                          "Children:\n 0: tag <span>\n 1: has no tag"),
                          repr(node))
 
     def test_repr_empty_node(self):
