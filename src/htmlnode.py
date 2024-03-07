@@ -50,6 +50,8 @@ class LeafNode(HTMLNode):
         if isinstance(self.tag, str):
             return f"{super().open_tag_to_html()}{self.value}{super().closing_tag_to_html()}"
         raise ValueError(f"LeafNode {id(self)} Tag property expecting to be string or None.")
+    def __repr__(self):
+        return super().__repr__()
 
 
 class ParentNode(HTMLNode):
@@ -66,3 +68,6 @@ class ParentNode(HTMLNode):
         return (f"{super().open_tag_to_html()}\n" +
                 f"{children_html}"
                 f"\n{super().closing_tag_to_html()}")
+
+    def __repr__(self):
+        return super().__repr__()
