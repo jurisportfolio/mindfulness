@@ -44,12 +44,15 @@ class LeafNode(HTMLNode):
 
     def to_html(self) -> str:
         if self.value is None:
-            raise ValueError(f"LeafNode {id(self)} Value property is None. Expecting to be string.")
+            raise ValueError(f"LeafNode {id(self)} "
+                             f"Value property is None. Expecting to be string.")
         if self.tag is None:
             return self.value
         if isinstance(self.tag, str):
             return f"{super().open_tag_to_html()}{self.value}{super().closing_tag_to_html()}"
-        raise ValueError(f"LeafNode {id(self)} Tag property expecting to be string or None.")
+        raise ValueError(f"LeafNode {id(self)} "
+                         f"Tag property expecting to be string or None.")
+
     def __repr__(self):
         return super().__repr__()
 
@@ -60,9 +63,11 @@ class ParentNode(HTMLNode):
 
     def to_html(self):
         if self.tag is None:
-            raise ValueError(f"ParentNode {id(self)} has no 'tag' property. ParentNode object should have 'tag'")
+            raise ValueError(f"ParentNode {id(self)} "
+                             f"Tag property is None. Expecting to be string.")
         if not self.children:
-            raise ValueError(f"ParentNode {id(self)} has no 'children' set. ParentNode should have 'children'")
+            raise ValueError(f"ParentNode {id(self)} "
+                             f"Children property is not set. Expecting to be not empty list of HTMLNodes")
         children = ["    " + child.to_html() for child in self.children]
         children_html = "\n".join(children)
         return (f"{super().open_tag_to_html()}\n" +
