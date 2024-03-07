@@ -48,3 +48,19 @@ class LeafNode(HTMLNode):
         if self.tag is None:
             return f"{self.value}"
         raise ValueError(f"Tag property for LeafNode {id(self)} should be string or None.")
+
+
+class ParentNode(HTMLNode):
+    def __init__(self, tag: str, children: [HTMLNode], props: dict = None):
+        super().__init__(tag=tag, children=children, props=props)
+
+    def to_html(self):
+        if self.tag is None:
+            raise ValueError(f"ParentNode {id(self)} has no 'tag' property. ParentNode object should have 'tag'")
+        if not self.children:
+            raise ValueError(f"ParentNode {id(self)} has no 'children' set. ParentNode should have 'children'")
+        children = ["    " + child.to_html() for child in self.children]
+        children_html = "\n".join(children)
+        return (f"{super().open_tag_to_html()}\n" +
+                f"{children_html}"
+                f"\n{super().closing_tag_to_html()}")
