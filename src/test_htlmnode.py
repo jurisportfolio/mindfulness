@@ -45,6 +45,10 @@ class TestLeafNode(unittest.TestCase):
         node = LeafNode("a", "Click me!", {"href": "https://www.google.com"})
         self.assertEqual("<a href=\"https://www.google.com\">Click me!</a>", node.to_html())
 
+    def test_leaf_node_to_html_none_tag(self):
+        node = LeafNode(tag=None, value="Some test node")
+        self.assertEqual("Some test node", node.to_html())
+
 
 class TestParentNode(unittest.TestCase):
     def test_parent_node_to_html(self):
