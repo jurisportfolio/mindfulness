@@ -40,13 +40,11 @@ class HTMLNode:
 
 class LeafNode(HTMLNode):
     def __init__(self, tag, value, props=None):
-        super().__init__(tag, value, props)
+        super().__init__(tag=tag, value=value, props=props)
 
     def to_html(self):
-        tag_str = f"<{self.tag}>"
-        tag_with_props_str = f"<{self.tag}{super().props_to_html()}>"
-        closing_tag_str = f"</{self.tag}>"
-        if self.props:
-            return f"{tag_with_props_str}{self.value}{closing_tag_str}"
-        else:
-            return f"{tag_str}{self.value}{closing_tag_str}"
+        if isinstance(self.tag, str):
+            return f"{super().open_tag_to_html()}{self.value}{super().closing_tag_to_html()}"
+        if self.tag is None:
+            return f"{self.value}"
+        raise ValueError(f"Tag property for LeafNode {id(self)} should be string or None.")
