@@ -22,7 +22,7 @@ class HTMLNode:
         return f"</{self.tag}>"
 
     def __repr__(self):
-        node_repr = ""
+        node_repr = "\n"
         node_repr += f"HTMLNode: {id(self)}"
         if self.tag:
             node_repr += f"\n     Tag: <{self.tag}>"

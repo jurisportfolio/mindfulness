@@ -23,7 +23,7 @@ class TestHTMLNode(unittest.TestCase):
                         props={"class": "some-class", "other_prop": "some-prop"},
                         children=[child_node1, child_node2]
                         )
-        self.assertEqual((f"HTMLNode: {id(node)}\n" +
+        self.assertEqual((f"\nHTMLNode: {id(node)}\n" +
                           "     Tag: <p>\n" +
                           "   Value: \"This is HTMLNode\"\n" +
                           "   Props: {'class': 'some-class', 'other_prop': 'some-prop'}\n" +
