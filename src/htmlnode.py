@@ -15,6 +15,12 @@ class HTMLNode:
                 html_props.append(f" {prop}=\"{self.props[prop]}\"")
         return "".join(html_props)
 
+    def open_tag_to_html(self):
+        return f"<{self.tag}>" if not self.props else f"<{self.tag}{self.props_to_html()}>"
+
+    def closing_tag_to_html(self):
+        return f"</{self.tag}>"
+
     def __repr__(self):
         node_repr = ""
         node_repr += f"HTMLNode: {id(self)}"
