@@ -32,7 +32,7 @@ class TestHTMLNode(unittest.TestCase):
 
     def test_repr_empty_node(self):
         node = HTMLNode()
-        test_expectation = f"HTMLNode: {id(node)}"
+        test_expectation = f"\nHTMLNode: {id(node)}"
         self.assertEqual(test_expectation, repr(node))
 
 
