@@ -68,11 +68,10 @@ class ParentNode(HTMLNode):
         if not self.children:
             raise ValueError(f"ParentNode {id(self)} "
                              f"Children property is not set. Expecting to be not empty list of HTMLNodes")
-        children = ["    " + child.to_html() for child in self.children]
-        children_html = "\n".join(children)
-        return (f"{super().open_tag_to_html()}\n" +
-                f"{children_html}"
-                f"\n{super().closing_tag_to_html()}")
+        children_html = [child.to_html() for child in self.children]
+        return (f"{super().open_tag_to_html()}" +
+                "".join(children_html) +
+                f"{super().closing_tag_to_html()}")
 
     def __repr__(self):
         return super().__repr__()

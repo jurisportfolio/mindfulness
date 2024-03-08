@@ -61,12 +61,7 @@ class TestParentNode(unittest.TestCase):
                 LeafNode(None, "Normal text"),
             ],
         )
-        self.assertEqual("<p>\n" +
-                         "    <b>Bold text</b>\n" +
-                         "    Normal text\n" +
-                         "    <i>italic text</i>\n" +
-                         "    Normal text\n" +
-                         "</p>",
+        self.assertEqual("<p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>",
                          node.to_html())
 
 
