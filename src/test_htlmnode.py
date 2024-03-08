@@ -1,12 +1,10 @@
+"""Tests for htmlnode unit tests smoke style"""
 import unittest
 
 from htmlnode import HTMLNode, LeafNode, ParentNode
 
 
 class TestHTMLNode(unittest.TestCase):
-    def test_to_html(self):
-        self.assertRaises(NotImplementedError)
-
     def test_props_to_html(self):
         node = HTMLNode(props={"href": "https://www.google.com", "target": "_blank"})
         self.assertEqual(" href=\"https://www.google.com\" target=\"_blank\"", node.props_to_html())
