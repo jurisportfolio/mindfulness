@@ -1,6 +1,5 @@
 """Tests for htmlnode unit tests smoke style"""
 import unittest
-
 from htmlnode import HTMLNode, LeafNode, ParentNode
 
 
@@ -61,6 +60,15 @@ class TestParentNode(unittest.TestCase):
         )
         self.assertEqual("<p><b>Bold text</b>Normal text<i>italic text</i>Normal text</p>",
                          node.to_html())
+
+    def test_parent_node_with_grandchild(self):
+        grandchild = LeafNode("b", "Grandchild value", {"class": "bb"})
+        child = ParentNode("span", [grandchild], {"class": "some-class"})
+        parent = ParentNode("div", [child], {"class": "box"})
+
+        self.assertEqual("<div class=\"box\"><span class=\"some-class\">" +
+                         "<b class=\"bb\">Grandchild value</b></span></div>",
+                         parent.to_html())
 
 
 if __name__ == "__main__":
