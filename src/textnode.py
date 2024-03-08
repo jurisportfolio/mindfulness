@@ -1,15 +1,21 @@
-text_type_text = "text"
-text_type_bold = "bold"
-text_type_italic = "italic"
-text_type_code = "code"
-text_type_link = "link"
-text_type_image = "image"
+"""Text node"""
+
+from enum import Enum
+
+
+class TextType(Enum):
+    TEXT = "text"
+    BOLD = "bold"
+    ITALIC = "italic"
+    CODE = "code"
+    LINK = "link"
+    IMAGE = "image"
 
 
 class TextNode:
     """Text node class"""
 
-    def __init__(self, text: str, text_type: str, url=None):
+    def __init__(self, text: str, text_type: TextType, url=None):
         self.text = text
         self.text_type = text_type
         self.url = url
