@@ -37,6 +37,12 @@ class HTMLNode:
                 node_repr += f"\n {index}: {tag_to_print if child.tag else 'has no tag'}"
         return node_repr
 
+    def __eq__(self, other):
+        return (self.tag == other.tag and
+                self.value == other.value and
+                self.props == other.props and
+                self.children == other.children)
+
 
 class LeafNode(HTMLNode):
     def __init__(self, tag, value: str, props=None):
