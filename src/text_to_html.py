@@ -5,7 +5,7 @@ from src.textnode import TextNode, TextType
 def text_node_to_html_node(text_node: TextNode) -> LeafNode:
     node_type = text_node.text_type
     text = text_node.text
-    if node_type is not TextType:
+    if node_type not in TextType:
         raise TypeError("TextNode type expected to be TextType member")
     if node_type == TextType.TEXT:
         return LeafNode(None, text)
