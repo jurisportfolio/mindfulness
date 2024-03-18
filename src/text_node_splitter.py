@@ -10,16 +10,16 @@ def split_text_node(node_to_split: TextNode, type_to_split: TextType = TextType.
     if not text_to_split:
         return [node_to_split]
     delimiter = DELIMITERS[type_to_split]
-    splitted_strings = text_to_split.split(delimiter)
+    sections = text_to_split.split(delimiter)
 
-    if len(splitted_strings) == 1:
+    if len(sections) == 1:
         return [node_to_split]
-    if len(splitted_strings) % 2 == 0:
+    if len(sections) % 2 == 0:
         raise ValueError(f"\nExpected to contain \"{type_to_split.value}\" with open/close delimiters \"{delimiter}\""
                          f"\nInvalid Markdown text: {text_to_split}")
 
     result = []
-    for idx, string in enumerate(splitted_strings):
+    for idx, string in enumerate(sections):
         #TODO: Decide what to do with spaces on left/right side of text
         if string == "":
             continue
