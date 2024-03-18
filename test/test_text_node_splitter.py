@@ -93,8 +93,12 @@ class TestSplitNodes(unittest.TestCase):
         ], split_nodes(text_nodes, TextType.ITALIC))
 
     def test_split_italic_and_bold_nodes_input(self):
-        text_node_with_italic = TextNode("Some text **some italic text** more text", TextType.TEXT, None)
-        text_node_with_bold = TextNode("*some bold text* more text *more bold text* end of text", TextType.TEXT, None)
+        text_node_with_italic = TextNode("Some text **some italic text** more text",
+                                         TextType.TEXT,
+                                         None)
+        text_node_with_bold = TextNode("*some bold text* more text *more bold text* end of text",
+                                       TextType.TEXT,
+                                       None)
         text_nodes = [text_node_with_italic, text_node_with_bold]
         text_nodes_with_italics = split_nodes(text_nodes, TextType.ITALIC)
         text_nodes_result = split_nodes(text_nodes_with_italics, TextType.BOLD)
