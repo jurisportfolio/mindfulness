@@ -2,20 +2,15 @@ from src.htmlnode import LeafNode
 from src.textnode import TextNode, TextType
 
 
-def leaf_node_from(text_node: TextNode) -> LeafNode:
-    node_type = text_node.text_type
-    text = text_node.text
-    if node_type not in TextType:
+def leaf_node_from(node: TextNode) -> LeafNode:
+    if node.text_type not in TextType:
         raise TypeError("TextNode type expected to be TextType member")
-    if node_type == TextType.TEXT:
-        return LeafNode(None, text)
-    if node_type == TextType.BOLD:
-        return LeafNode("b", text)
-    if node_type == TextType.ITALIC:
-        return LeafNode("i", text)
-    if node_type == TextType.CODE:
-        return LeafNode("code", text)
-    if node_type == TextType.LINK:
-        return LeafNode("a", text, {"href": text_node.url})
-    if node_type == TextType.IMAGE:
-        return LeafNode("img", "", {"src": text_node.url, "alt": text_node.text})
+    leaf_nodes = {
+        TextType.TEXT: LeafNode(None, node.text),
+        TextType.BOLD: LeafNode("b", node.text),
+        TextType.ITALIC: LeafNode("i", node.text),
+        TextType.CODE: LeafNode("code", node.text),
+        TextType.LINK: LeafNode("a", node.text, {"href": node.url}),
+        TextType.IMAGE: LeafNode("img", "", {"src": node.url, "alt": node.text})
+    }
+    return leaf_nodes.get(node.text_type)
