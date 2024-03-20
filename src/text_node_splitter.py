@@ -1,8 +1,8 @@
 from src.textnode import TextNode, TextType
 
 DELIMITERS = {TextType.CODE: "`",
-              TextType.BOLD: "*",
-              TextType.ITALIC: "**"}
+              TextType.BOLD: "**",
+              TextType.ITALIC: "*"}
 
 
 def split_text_node(node_to_split: TextNode, type_to_split: TextType = TextType.BOLD) -> [TextNode]:
